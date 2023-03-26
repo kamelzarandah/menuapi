@@ -346,8 +346,10 @@
                   let min = typeof elem.min == "undefined" ? 0 : elem.min;
                   if (elem.value > min) {
                     if (typeof elem.hop != "undefined") {
-                      elem.value = Number(elem.value) - elem.hop;
-                      elem.value = elem.value.toFixed(1);
+                      elem.value = (
+                        Number(elem.value) - Number(elem.hop)
+                      ).toFixed(1); // limit to 1 decimal place
+                      elem.value = Number(elem.value);
                       if (elem.value < min) {
                         elem.value = min;
                       }
@@ -402,9 +404,8 @@
                       if (min > 0 && min == elem.value) {
                         elem.value = 0;
                       }
-
-                      elem.value = Number(elem.value) + elem.hop;
-                      elem.value = elem.value.toFixed(1);
+                      elem.value = (Number(elem.value) + Number(elem.hop)).toFixed(1); // limit to 1 decimal place
+                      elem.value = Number(elem.value);
                       if (elem.value > elem.max) {
                         elem.value = elem.max;
                       }
