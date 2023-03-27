@@ -346,6 +346,15 @@
                   let min = typeof elem.min == "undefined" ? 0 : elem.min;
                   if (elem.value > min) {
                     if (typeof elem.hop != "undefined") {
+                      if (Number.isInteger(elem.hop)) {
+                        elem.value = elem.value - elem.hop;
+                        // limit to 1 decimal place
+                      } else {
+                        elem.value = (
+                          Number(elem.value) - Number(elem.hop)
+                        ).toFixed(1); // limit to 1 decimal place
+                      }
+
                       elem.value = (
                         Number(elem.value) - Number(elem.hop)
                       ).toFixed(1); // limit to 1 decimal place
@@ -401,11 +410,21 @@
                   if (typeof elem.max != "undefined" && elem.value < elem.max) {
                     if (typeof elem.hop != "undefined") {
                       let min = typeof elem.min == "undefined" ? 0 : elem.min;
+
                       if (min > 0 && min == elem.value) {
                         elem.value = 0;
                       }
-                      elem.value = (Number(elem.value) + Number(elem.hop)).toFixed(1); // limit to 1 decimal place
+
+                      if (Number.isInteger(elem.hop)) {
+                        elem.value = elem.value + elem.hop;
+                      } else {
+                        elem.value = (
+                          Number(elem.value) + Number(elem.hop)
+                        ).toFixed(1); // limit to 1 decimal place
+                      }
+
                       elem.value = Number(elem.value);
+
                       if (elem.value > elem.max) {
                         elem.value = elem.max;
                       }
