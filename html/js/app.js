@@ -344,16 +344,19 @@
 
                 case "slider": {
                   let min = typeof elem.min == "undefined" ? 0 : elem.min;
+
                   if (elem.value > min) {
                     if (typeof elem.hop != "undefined") {
                       if (Number.isInteger(elem.hop)) {
                         elem.value = elem.value - elem.hop;
-                        // limit to 1 decimal place
                       } else {
-                        Number(elem.value) = (   Number(elem.value) - Number(elem.hop)).toFixed(1); // limit to 1 decimal place
+                        elem.value = (
+                          Number(elem.value) - Number(elem.hop)
+                        ).toFixed(1);
                       }
-                      
+
                       elem.value = Number(elem.value);
+
                       if (elem.value < min) {
                         elem.value = min;
                       }
@@ -413,7 +416,9 @@
                       if (Number.isInteger(elem.hop)) {
                         elem.value = elem.value + elem.hop;
                       } else {
-                        Number(elem.value) = ( Number(elem.value) + Number(elem.hop) ).toFixed(1); // limit to 1 decimal place
+                        elem.value = (
+                          Number(elem.value) + Number(elem.hop)
+                        ).toFixed(1);
                       }
 
                       elem.value = Number(elem.value);
