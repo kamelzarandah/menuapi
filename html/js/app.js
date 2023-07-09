@@ -6,22 +6,14 @@
     '<div class="menu-items">' +
     '<div class="topline"></div>' +
     "{{#elements}}" +
-    '<div class="menu-item {{#selected}}selected{{/selected}} {{#isSlider}}slider{{/isSlider}}" style="height:{{itemHeight}};!important">' +
-    '<div id="item-label">{{{label}}}</div><div class="arrows">{{#isSlider}}<i class="fas fa-chevron-left"></i><div id="slider-label">{{{sliderLabel}}}</div><i class="fas fa-chevron-right"></i>{{/isSlider}}</div>' +
-    "</div>" +
-    "{{/elements}}" +
-    "</div>" +
-    '<div class="scrollbottom"></div>' +
-    "{{#elements}}" +
-    "{{#selected}}" +
+    '<div class="menu-item {{#selected}}selected{{/selected}} {{#isSlider}}slider{{/isSlider}}" {{#itemHeight}} style="height:{{{itemHeight}}};!important"{{/itemHeight}}>' +
+    '<div id="item-label">{{{label}}}</div><div class="arrows">{{#isSlider}}<i class="fas fa-arrow-circle-left"></i><div id="slider-label">{{{sliderLabel}}}</div><i class="fas fa-arrow-alt-circle-right"></i>{{/isSlider}}</div>' +
+    "</div>" + "{{/elements}}" +
+    "</div>" + '<div class="scrollbottom"></div>' + "{{#elements}}" + "{{#selected}}" +
     '<div class="options-amount">{{{list_id}}}/{{{list_max}}}</div>' +
-    "<br>" +
-    '<div class="desciption">{{{desc}}}</div>' +
-    "{{/selected}}" +
-    "{{/elements}}" +
-    "<br>" +
-    "</div>" +
-    "</div>";
+    "<br>" + '<div class="desciption">{{{desc}}}</div>' + "{{/selected}}" + "{{/elements}}" + "<br>" + "</div>" + "</div>";
+
+
   window.MenuData = {};
   MenuData.ResourceName = "menuapi";
   MenuData.opened = {};
