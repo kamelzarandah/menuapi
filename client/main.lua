@@ -23,17 +23,17 @@ MenuData.RegisteredTypes['default'] = {
 
 
 function MenuData.Open(type, namespace, name, data, submit, cancel, change, close)
-    local menu                            = {}
+    local menu     = {}
 
-    menu.type                             = type
-    menu.namespace                        = namespace
-    menu.name                             = name
-    menu.data                             = data
-    menu.submit                           = submit
-    menu.cancel                           = cancel
-    menu.change                           = change
+    menu.type      = type
+    menu.namespace = namespace
+    menu.name      = name
+    menu.data      = data
+    menu.submit    = submit
+    menu.cancel    = cancel
+    menu.change    = change
 
-    menu.close                            = function()
+    menu.close     = function()
         MenuData.RegisteredTypes[type].close(namespace, name)
 
         for i = 1, #MenuData.Opened, 1 do
@@ -49,7 +49,7 @@ function MenuData.Open(type, namespace, name, data, submit, cancel, change, clos
         end
     end
 
-    menu.update                           = function(query, newData)
+    menu.update    = function(query, newData)
         for i = 1, #menu.data.elements, 1 do
             local match = true
 
@@ -67,6 +67,38 @@ function MenuData.Open(type, namespace, name, data, submit, cancel, change, clos
         end
     end
 
+    menu.addNewElement                    = function(element)
+        menu.data.elements[#menu.data.elements + 1] = element
+    end
+
+    menu.removeElementByValue             = function(value, stop)
+        -- remove element from table
+        for i = 1, #menu.data.elements, 1 do
+            if menu.data.elements[i] then
+                if menu.data.elements[i].value == value then
+                    table.remove(menu.data.elements, i)
+                    if stop then
+                        break
+                    end
+                end
+            end
+        end
+    end
+
+    menu.removeElementByIndex             = function(index, stop)
+        -- remove element from table
+        for i = 1, #menu.data.elements, 1 do
+            if menu.data.elements[i] then
+                if i == index then
+                    table.remove(menu.data.elements, i)
+                    if stop then
+                        break
+                    end
+                end
+            end
+        end
+    end
+
     menu.refresh                          = function()
         MenuData.RegisteredTypes[type].open(namespace, name, menu.data)
     end
@@ -74,11 +106,12 @@ function MenuData.Open(type, namespace, name, data, submit, cancel, change, clos
     menu.setElement                       = function(i, key, val)
         menu.data.elements[i][key] = val
     end
-
+    -- override all elements
     menu.setElements                      = function(newElements)
         menu.data.elements = newElements
     end
 
+    -- change the title of the current menu
     menu.setTitle                         = function(val)
         menu.data.title = val
     end
@@ -95,6 +128,7 @@ function MenuData.Open(type, namespace, name, data, submit, cancel, change, clos
             end
         end
     end
+
     MenuData.Opened[#MenuData.Opened + 1] = menu
     MenuData.RegisteredTypes[type].open(namespace, name, data)
     PlaySoundFrontend("SELECT", "RDRO_Character_Creator_Sounds", true, 0)
