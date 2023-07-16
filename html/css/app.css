@@ -9,7 +9,11 @@
 	font-family: HapnaSlabSerif-Medium;
 	src: url(../fonts/HapnaSlabSerif-Medium.ttf) format('truetype')
 }
-
+.item-image {
+	max-height: 50px;
+	max-width: 50px;
+	margin-right: 5px;
+}
 .menu {
 	font-family: "crock", crock, serif;
 	min-width: 510px;
