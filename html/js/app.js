@@ -7,7 +7,7 @@
     '<div class="topline"></div>' +
     "{{#elements}}" +
     '<div class="menu-item {{#selected}}selected{{/selected}} {{#isSlider}}slider{{/isSlider}}" {{#itemHeight}} style="height:{{{itemHeight}}};!important"{{/itemHeight}}>' +
-    '<div id="item-label">{{{label}}}</div><div class="arrows">{{#isSlider}}<i class="fas fa-arrow-circle-left"></i><div id="slider-label">{{{sliderLabel}}}</div><i class="fas fa-arrow-alt-circle-right"></i>{{/isSlider}}</div>' +
+    '{{#image}}<img class="item-image" src="nui://vorp_inventory/html/img/items/{{{image}}}.png"></img>{{/image}} <div id="item-label" {{#image}}class="image-pad"{{/image}}>{{{label}}}</div><div class="arrows">{{#isSlider}}<i class="fas fa-arrow-circle-left"></i><div id="slider-label">{{{sliderLabel}}}</div><i class="fas fa-arrow-alt-circle-right"></i>{{/isSlider}}</div>' +
     "</div>" + "{{/elements}}" +
     "</div>" + '<div class="scrollbottom"></div>' + "{{#elements}}" + "{{#selected}}" +
     '<div class="options-amount">{{{list_id}}}/{{{list_max}}}</div>' +
